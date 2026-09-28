@@ -4,7 +4,7 @@
 
 do --/* FTF */--
 -- ============================================================
--- UTILITÃRIOS BASE
+-- UTILITÁRIOS BASE
 -- ============================================================
 local c_caller = function(t, f, cf, ...)
     if type(f) == t then if cf then return f() end return f end
@@ -202,12 +202,12 @@ local function makeCtrl(text, xPos, callback)
 end
 
 local minimized = false
-makeCtrl("â€“", 0, function()
+makeCtrl("–", 0, function()
     minimized = not minimized
     TweenService:Create(Window, TweenInfo.new(0.2), {Size = minimized and UDim2.fromOffset(560, 44) or UDim2.fromOffset(560, 420)}):Play()
 end)
-makeCtrl("â–¡", 30, function() end)
-makeCtrl("Ã—", 60, function() ScreenGui:Destroy() end)
+makeCtrl("□", 30, function() end)
+makeCtrl("×", 60, function() ScreenGui:Destroy() end)
 
 -- SIDEBAR
 local Sidebar = Instance.new("Frame")
@@ -633,12 +633,12 @@ local Genv = _G; Genv.SHub = Genv.SHub or {}; Genv.SHub.Toggle = Genv.SHub.Toggl
 -- ============================================================
 local MainTab = UI:CreateTab("Principal", 4483362458)
 local LocalTab = UI:CreateTab("Local", 4483362458)
-local AntiTab = UI:CreateTab("Anti & NotificaÃ§Ã£o", 4483362458)
+local AntiTab = UI:CreateTab("Anti & Notificação", 4483362458)
 local GameTab = UI:CreateTab("Jogo & Ragebait", 4483362458)
-local RecordTab = UI:CreateTab("GravaÃ§Ã£o", 4483362458)
-local CreditsTab = UI:CreateTab("CrÃ©ditos", 4483362458)
+local RecordTab = UI:CreateTab("Gravação", 4483362458)
+local CreditsTab = UI:CreateTab("Créditos", 4483362458)
 local OtherTab = UI:CreateTab("Outros", 4483362458)
-local SettingsTab = UI:CreateTab("ConfiguraÃ§Ãµes", 4483362458)
+local SettingsTab = UI:CreateTab("Configurações", 4483362458)
 
 UI:SelectTab(MainTab)
 
@@ -804,7 +804,7 @@ UI:CreateToggle(MainTab.Frame, "ESP FreezePod", false, function(v)
     end
 end)
 
-UI:CreateToggle(MainTab.Frame, "ESP Porta de SaÃ­da", false, function(v)
+UI:CreateToggle(MainTab.Frame, "ESP Porta de Saída", false, function(v)
     Genv.SHub.Toggle.DoorEsp = v
     local espFolder = ScreenGui:FindFirstChild("SHub_ESP_Door") or Instance.new("Folder")
     espFolder.Name = "SHub_ESP_Door"; espFolder.Parent = ScreenGui
@@ -833,7 +833,7 @@ UI:CreateToggle(MainTab.Frame, "ESP Porta de SaÃ­da", false, function(v)
                                 l.Font = Enum.Font.GothamBold
                                 l.TextColor3 = Color3.fromRGB(100, 255, 100)
                                 l.TextStrokeTransparency = 0.3
-                                l.Text = "Porta de SaÃ­da"
+                                l.Text = "Porta de Saída"
                             end
                             bb.Adornee = part
                         end
@@ -915,7 +915,7 @@ UI:CreateToggle(MainTab.Frame, "Arremessar por Toque", false, function(v)
     local vel, movel = nil, 0.05
     while Genv.SHub.Toggle.TouchFling do
         SRunService.Heartbeat:Wait()
-        vel = LPR.Velocity; LPR.Velocity = (vel * 900000000) + Vector3.new(0, 900000000, 0)
+        vel = LPR.Velocity; LPR.Velocity = (vel * 9e8) + Vector3.new(0, 9e8, 0)
         SRunService.RenderStepped:Wait()
         if LPC and LPR then LPR.Velocity = vel end
         SRunService.Stepped:Wait()
@@ -926,8 +926,8 @@ end)
 -- ============================================================
 -- ABA LOCAL
 -- ============================================================
-UI:CreateSection(LocalTab.Frame, "CÃ¢mera")
-UI:CreateToggle(LocalTab.Frame, "CÃ¢mera Atravessar Paredes", false, function(v)
+UI:CreateSection(LocalTab.Frame, "Câmera")
+UI:CreateToggle(LocalTab.Frame, "Câmera Atravessar Paredes", false, function(v)
     Genv.SHub.Toggle.CamNoclip = v
     while Genv.SHub.Toggle.CamNoclip and task.wait(0.1) do
         if LP.DevCameraOcclusionMode ~= Enum.DevCameraOcclusionMode.Invisicam then
@@ -937,7 +937,7 @@ UI:CreateToggle(LocalTab.Frame, "CÃ¢mera Atravessar Paredes", false, function(
     if not Genv.SHub.Toggle.CamNoclip then LP.DevCameraOcclusionMode = Enum.DevCameraOcclusionMode.Zoom end
 end)
 
-UI:CreateToggle(LocalTab.Frame, "CÃ¢mera Primeira Pessoa PadrÃ£o", false, function(v)
+UI:CreateToggle(LocalTab.Frame, "Câmera Primeira Pessoa Padrão", false, function(v)
     Genv.SHub.Toggle.CamClassic = v
     while Genv.SHub.Toggle.CamClassic and task.wait(0.1) do
         if LP.CameraMode ~= Enum.CameraMode.Classic then LP.CameraMode = Enum.CameraMode.Classic end
@@ -980,7 +980,7 @@ end)
 -- ============================================================
 -- ABA ANTI
 -- ============================================================
-UI:CreateSection(AntiTab.Frame, "NotificaÃ§Ã£o")
+UI:CreateSection(AntiTab.Frame, "Notificação")
 UI:CreateToggle(AntiTab.Frame, "Notificar Admin Entrou", true, function(v)
     Genv.SHub.Notify.NotifyAdmin = v
     local creId, creType = ugc.CreatorId, ugc.CreatorType
@@ -1025,7 +1025,7 @@ end)
 -- ABA JOGO
 -- ============================================================
 UI:CreateSection(GameTab.Frame, "Status do Jogo")
-UI:CreateParagraph(GameTab.Frame, "Status Atual", "Ativo: --  â€¢  Mapa: --")
+UI:CreateParagraph(GameTab.Frame, "Status Atual", "Ativo: --  •  Mapa: --")
 
 UI:CreateSection(GameTab.Frame, "Provocando a Fera")
 UI:CreateToggle(GameTab.Frame, "Deixar Fera Lenta", false, function(v)
@@ -1053,13 +1053,13 @@ UI:CreateToggle(GameTab.Frame, "Fera Desamarrar", false, function(v)
 end)
 
 -- ============================================================
--- ABA GRAVAÃ‡ÃƒO
+-- ABA GRAVAÇÃO
 -- ============================================================
-UI:CreateSection(RecordTab.Frame, "CustomizaÃ§Ã£o da UI")
-UI:CreateParagraph(RecordTab.Frame, "Info", "Use para gravar vÃ­deos com nome customizado")
+UI:CreateSection(RecordTab.Frame, "Customização da UI")
+UI:CreateParagraph(RecordTab.Frame, "Info", "Use para gravar vídeos com nome customizado")
 
 -- ============================================================
--- ABA CRÃ‰DITOS
+-- ABA CRÉDITOS
 -- ============================================================
 UI:CreateSection(CreditsTab.Frame, "akz scripts")
 UI:CreateParagraph(CreditsTab.Frame, "akz scripts - v1.1.0", "Desenvolvedor: akira007p")
@@ -1077,14 +1077,14 @@ UI:CreateParagraph(CreditsTab.Frame, "akira007p", "Desenvolvido por akira007p")
 -- ============================================================
 -- ABA OUTROS
 -- ============================================================
-UI:CreateSection(OtherTab.Frame, "InformaÃ§Ãµes")
-UI:CreateParagraph(OtherTab.Frame, "Info", "VersÃ£o do script: 1.1.0")
+UI:CreateSection(OtherTab.Frame, "Informações")
+UI:CreateParagraph(OtherTab.Frame, "Info", "Versão do script: 1.1.0")
 UI:CreateParagraph(OtherTab.Frame, "Executor", tostring(execName))
 
 -- ============================================================
--- ABA CONFIGURAÃ‡Ã•ES
+-- ABA CONFIGURAÇÕES
 -- ============================================================
-UI:CreateSection(SettingsTab.Frame, "ConfiguraÃ§Ãµes")
-UI:CreateParagraph(SettingsTab.Frame, "Info", "ConfiguraÃ§Ãµes da UI salvas automaticamente")
+UI:CreateSection(SettingsTab.Frame, "Configurações")
+UI:CreateParagraph(SettingsTab.Frame, "Info", "Configurações da UI salvas automaticamente")
 
 end --/* FTF */--
